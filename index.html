@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/6_icon/ni05wp-sozai01.png">
+    <title>31タイマー</title>
+
+    <link rel="stylesheet" href="https://unpkg.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 画面1: 初期画面（時間選択） -->
+        <div id="screen-home" class="screen active">
+            <header class="app-header">
+                <din class="logoimg"><img src="./img/kigyoulogo02.png"></din>
+                <div class="logo">31 TIMER</div>
+                <button id="btn-tickets" class="ticket-btn">チケット一覧</button>
+            </header>
+            <div class="home-content">
+                <h2>集中したい時間をタップ！</h2>
+                <div class="time-presets">
+                    <button class="preset-btn" data-time="5"><span>5分</span></button>
+                    <button class="preset-btn" data-time="25"><span>25分</span></button>
+                    <button class="preset-btn" data-time="60"><span>60分</span></button>
+                    <button class="preset-btn" data-time="90"><span>90分</span></button>
+                </div>
+                <div class="custom-time-box">
+                    <input type="number" id="custom-minutes" placeholder="自由に入力" min="1" max="180">
+                    <span>分</span>
+                    <button id="btn-custom-start" class="sub-btn">決定</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 画面2: フレーバー選択 -->
+        <div id="screen-flavor" class="screen">
+            <header class="app-header">
+                <button class="back-btn" data-target="screen-home">＜ 戻る</button>
+                <div class="logo">フレーバー選択</div>
+            </header>
+            <div class="flavor-content">
+                <h2>作りたいフレーバーをえらんでね！</h2>
+                <div class="flavor-grid">
+                    <div class="flavor-card" data-flavor="vanilla" data-name="ポッピングシャワー" data-color="#97c085">
+                        <div class="flavor-icon"><img src="./img/ni09sozai01.png"></div>
+                        <span>ポッピングシャワー</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="strawberry" data-name="ラブポーションサーティワン" data-color="#eabdab">
+                        <div class="flavor-icon"><img src="./img/ni09sozai02.png"></div>
+                        <span>ラブポーションサーティワン</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="matcha" data-name="大納言あずき" data-color="#a88680">
+                        <div class="flavor-icon"><img src="./img/ni09sozai03.png"></div>
+                        <span>大納言あずき</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="choco" data-name="クッキーアンドクリーム" data-color="#d7ccc8">
+                        <div class="flavor-icon"><img src="./img/ni09sozai04.png"></div>
+                        <span>クッキーアンドクリーム</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="blueberry" data-name="抹茶" data-color="#8ba930">
+                        <div class="flavor-icon"><img src="./img/ni09sozai05.png"></div>
+                        <span>抹茶</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="mango" data-name="マスクメロン" data-color="#c9dc5c">
+                        <div class="flavor-icon"><img src="./img/ni09sozai06.png"></div>
+                        <span>マスクメロン</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="mango" data-name="ロッキーロード®" data-color="#6c4a35">
+                        <div class="flavor-icon"><img src="./img/ni09sozai07.png"></div>
+                        <span>ロッキーロード®</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="mango" data-name="バニラ" data-color="#ffecb2">
+                        <div class="flavor-icon"><img src="./img/ni09sozai08.png"></div>
+                        <span>バニラ</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="mango" data-name="キャラメルリボン" data-color="#f3c05d">
+                        <div class="flavor-icon"><img src="./img/ni09sozai09.png"></div>
+                        <span>キャラメルリボン</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="mango" data-name="ベリーベリーストロベリー" data-color="#ebbca7">
+                        <div class="flavor-icon"><img src="./img/ni09sozai10.png"></div>
+                        <span>ベリーベリーストロベリー</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="mango" data-name="歯磨き粉" data-color="#a5d5b6">
+                        <div class="flavor-icon"><img src="./img/ni09sozai11.png"></div>
+                        <span>チョコレートミント</span>
+                    </div>
+                    <div class="flavor-card" data-flavor="mango" data-name="オレンジソルベ" data-color="#f5983b">
+                        <div class="flavor-icon"><img src="./img/ni09sozai12.png"></div>
+                        <span>オレンジソルベ</span>
+                    </div>
+                </div>
+                <br><br><br>
+            </div>
+        </div>
+
+        <!-- 画面3: フレーバー確認 ＆ スタート -->
+        <div id="screen-confirm" class="screen">
+            <header class="app-header">
+                <button class="back-btn" data-target="screen-flavor">＜ 戻る</button>
+                <div class="logo">準備完了</div>
+            </header>
+            <div class="confirm-content">
+                <div class="selected-ice-preview" id="preview-cone">
+                    <div class="ice-scoop" id="preview-scoop">🍦</div>
+                    <div class="ice-cone"></div>
+                </div>
+                <p id="confirm-text">25分間 集中するよ！</p>
+                <button id="btn-start-timer" class="action-btn">作る！</button>
+            </div>
+        </div>
+
+        <!-- 画面4: タイマー画面 -->
+        <div id="screen-timer" class="screen">
+            <header class="timer-header">
+                <div class="time-display-current" id="current-time-clock">15:41</div>
+                <div class="bg-switcher">
+                    <button class="bg-btn active" data-bg="day">☀️</button>
+                    <button class="bg-btn" data-bg="sunset">🌇</button>
+                    <button class="bg-btn" data-bg="night">🌙</button>
+                </div>
+            </header>
+            <div class="timer-main">
+                <div class="ice-making-animation" id="making-animation">
+                    <div class="ice-scoop animating" id="timer-scoop">🍦</div>
+                    <div class="ice-cone"></div>
+                    <div class="sparkles">✨</div>
+                </div>
+                <div class="countdown-display" id="countdown">25:00</div>
+                <button id="btn-cancel-timer" class="cancel-link">やめる</button>
+            </div>
+        </div>
+
+        <!-- 画面5: 完成（タイマー終了画面） -->
+        <div id="screen-result" class="screen">
+            <div class="result-content">
+                <h2>完成！！🎉</h2>
+                <div class="completed-ice">
+                    <div class="ice-scoop" id="result-scoop">🍦</div>
+                    <div class="ice-cone"></div>
+                </div>
+                <p class="result-message">今回集中したじかん：<span id="result-minutes">25</span>分</p>
+                <div class="ticket-reward-card">
+                    <div class="ticket-tag">チケットGET!</div>
+                    <h3 id="ticket-title">シングル50%OFF券</h3>
+                    <p id="ticket-desc">次回の購入で使えるクーポンです</p>
+                </div>
+                <button id="btn-go-home" class="action-btn">ホームへもどる</button>
+            </div>
+        </div>
+
+        <!-- モーダル: チケット一覧 -->
+        <div id="modal-tickets" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🎫 獲得したチケット</h3>
+                    <button id="close-modal" class="close-btn">&times;</button>
+                </div>
+                <div class="ticket-list" id="ticket-list-container">
+                    <!-- JavaScriptで動的に挿入 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
